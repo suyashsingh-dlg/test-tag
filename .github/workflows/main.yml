@@ -1,4 +1,4 @@
-name: Bump version
+name: Release Candidate And Tag
 on:
   push:
     branches:
@@ -14,11 +14,9 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           tag_prefix: RC-
-          create_annotated_tag: true
-          dry_run: true
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ steps.tag_version.outputs.new_tag }}
-          name: RC- ${{ steps.tag_version.outputs.new_tag }}
+          name: Release- ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }}
